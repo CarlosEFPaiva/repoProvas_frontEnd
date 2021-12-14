@@ -6,8 +6,10 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        font-family: 'Mukta', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: 400;
+        background-color: #333333;
+        color: #FFFFFF;
     }
 `;
 
