@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import MainButtons from './components/MainButtons';
 
-import Title from './components/Title';
+import BoldText from '../../shared/BoldText';
 
 export default function Homepage() {
     return (
         <Wrapper>
-            <Title> RepoProvas </Title>
+            <BoldText fontSize="60px"> RepoProvas </BoldText>
             <MainButtons />
         </Wrapper>
     );

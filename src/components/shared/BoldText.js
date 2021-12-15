@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export default function Title({ children }) {
+export default function BoldText({ children, fontSize }) {
     return (
-        <Wrapper>
+        <Wrapper fontSize={fontSize}>
             {children}
         </Wrapper>
     );
 }
 
 const Wrapper = styled.span`
-    font-size: 60px;
+    font-size: ${({ fontSize }) => fontSize};
     font-weight: 700;
 `;

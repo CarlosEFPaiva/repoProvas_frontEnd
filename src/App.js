@@ -8,6 +8,7 @@ import GlobalReset from './assets/css/GlobalReset';
 import GlobalStyles from './assets/css/GlobalStyles';
 
 import Homepage from './components/pages/Home/Home';
+import SendTest from './components/pages/SendTest/SendTest';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <GlobalStyles />
             <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="/send-test" element={<SendTest />} />
             </Routes>
         </BrowserRouter>
     );
