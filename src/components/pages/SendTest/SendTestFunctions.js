@@ -19,3 +19,8 @@ export function setStartingOptions(options, setOptions, setIsLoading) {
 export function setProfessors(options, setOptions, setIsLoading) {
     setGenericOptions(options, setOptions, setIsLoading, () => getProfessors());
 }
+
+export function isAnyAtributeEmpty(object) {
+    const atributes = Object.values(object);
+    return atributes.some((value) => !value);
+}

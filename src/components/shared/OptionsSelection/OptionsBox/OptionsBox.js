@@ -26,6 +26,7 @@ export default function OptionsBox({ atribute, options }) {
             </Wrapper>
             <BlankSpace
                 isShown={isOpened}
+                isTransparent
                 onClick={() => setIsOpened(false)}
             />
         </>

@@ -5,7 +5,7 @@ export function getStartingOptions() {
             semesters: [1, 2],
             categories: ['P1', 'P2', 'P3', '2a chamada', 'Outras'],
             subjects: ['Mecânica dos Fluidos', 'Mecânica dos Sólidos', 'Soldagem', 'Dinâmica', 'Metrologia'],
-        }), 4000);
+        }), 2000);
     });
 }
 
@@ -13,6 +13,6 @@ export function getProfessors() {
     return new Promise((resolve) => {
         setTimeout(() => resolve({
             professors: ['Lavinia', 'Nestor', 'Albino', 'Daniel Onofre', 'Rochinha', 'Anna Carla', 'Daniel Castello', 'Flavio', 'Stockler'],
-        }), 4000);
+        }), 2000);
     });
 }

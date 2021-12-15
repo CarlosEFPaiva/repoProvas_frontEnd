@@ -7,8 +7,11 @@ import GoHomeButton from '../../shared/GoHomeButton';
 import BoldText from '../../shared/BoldText';
 import OptionsSelection from '../../shared/OptionsSelection/OptionSelection';
 import BlankSpace from '../../shared/BlankSpace';
+import LabeledInput from '../../shared/LabeledInput';
+import SendButton from './components/SendButton';
 
 import { setProfessors, setStartingOptions } from './SendTestFunctions';
+import { Loading } from '../../../utils/externalLibs/reactLoader';
 
 export default function SendTest() {
     const [isLoading, setIsLoading] = useState(false);
@@ -40,6 +43,20 @@ export default function SendTest() {
             setProfessors(options, setOptions, setIsLoading);
         }
     }, [newTestData]);
+
+    if (!options.years.length) {
+        return (
+            <Wrapper>
+                <GoHomeButton />
+                <Loading
+                    type="TailSpin"
+                    color="#FFFFFF"
+                    height="300px"
+                    width="300px"
+                />
+            </Wrapper>
+        );
+    }
 
     return (
         <>
@@ -77,6 +94,17 @@ export default function SendTest() {
                         />
                     </NewTestContext.Provider>
                 </div>
+                <LabeledInput
+                    title="Digite o link da sua prova:"
+                    isShown={!!options.professors.length}
+                    value={newTestData.link}
+                    onChange={(e) => adjustTestSingleAtribute('link', e.target.value)}
+                />
+                <SendButton
+                    text="Enviar"
+                    isShown={!!options.professors.length}
+                    objectToSend={newTestData}
+                />
             </Wrapper>
             <BlankSpace
                 isTransparent
@@ -93,7 +121,7 @@ const Wrapper = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    & > div {
+    & > div:first-of-type {
         margin-top: 60px;
     }
 `;
