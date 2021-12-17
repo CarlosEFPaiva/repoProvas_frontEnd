@@ -1,10 +1,14 @@
 import {
     BrowserRouter,
     Routes,
+    Route,
 } from 'react-router-dom';
 
 import GlobalReset from './assets/css/GlobalReset';
 import GlobalStyles from './assets/css/GlobalStyles';
+
+import Homepage from './components/pages/Home/Home';
+import SendTest from './components/pages/SendTest/SendTest';
 
 function App() {
     return (
@@ -12,7 +16,8 @@ function App() {
             <GlobalReset />
             <GlobalStyles />
             <Routes>
-                {/* <Route path="/" element={< />} /> */}
+                <Route path="/" element={<Homepage />} />
+                <Route path="/send-test" element={<SendTest />} />
             </Routes>
         </BrowserRouter>
     );
