@@ -1,15 +1,27 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { isAnyAtributeEmpty } from '../SendTestFunctions';
+import { Loading } from '../../../../utils/externalLibs/reactLoader';
+import { isAnyAtributeEmpty, sendTestData } from '../SendTestFunctions';
 
-export default function SendButton({ text, isShown, objectToSend }) {
+export default function SendButton({ text, isLoading, setIsLoading, isShown, newTestData }) {
+    const navigate = useNavigate();
     return (
         <Wrapper
             isShown={isShown}
-            onClick={() => console.log('TBD')}
-            isForbidden={isAnyAtributeEmpty(objectToSend)}
-            disabled={isAnyAtributeEmpty(objectToSend)}
+            onClick={() => sendTestData(newTestData, setIsLoading, navigate)}
+            isForbidden={isAnyAtributeEmpty(newTestData)}
+            disabled={isAnyAtributeEmpty(newTestData)}
         >
-            {text}
+            {isLoading ?
+                (
+                    <Loading
+                        type="ThreeDots"
+                        color="#2FC4C0"
+                        height="60px"
+                        width="60px"
+                    />
+                ) :
+                text}
         </Wrapper>
     );
 }

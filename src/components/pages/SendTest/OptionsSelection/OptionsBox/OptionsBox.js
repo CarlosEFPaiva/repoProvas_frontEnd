@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import styled from 'styled-components';
 
+import NewTestContext from '../../../../../contexts/NewTestContext';
+import BlankSpace from '../../../../shared/BlankSpace';
+import { ArrowDown } from '../../../../../utils/externalLibs/icons';
 import OpenedBox from './OpenedOptionsBox';
-import BlankSpace from '../../BlankSpace';
-import { ArrowDown } from '../../../../utils/externalLibs/icons';
-import NewTestContext from '../../../../contexts/NewTestContext';
 
 export default function OptionsBox({ atribute, options }) {
     const [isOpened, setIsOpened] = useState(false);

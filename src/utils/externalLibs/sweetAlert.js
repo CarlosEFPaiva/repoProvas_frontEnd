@@ -5,7 +5,7 @@ function sendErrorAlert(html) {
         icon: 'error',
         title: 'Oops...',
         html,
-        timer: 2500,
+        timer: 5000,
     });
 }
 
@@ -14,7 +14,7 @@ function sendSuccessAlert(html) {
         title: 'Beleza!',
         html,
         icon: 'success',
-        timer: 2500,
+        timer: 5000,
     });
 }
 

@@ -5,7 +5,7 @@ import NewTestContext from '../../../contexts/NewTestContext';
 
 import GoHomeButton from '../../shared/GoHomeButton';
 import BoldText from '../../shared/BoldText';
-import OptionsSelection from '../../shared/OptionsSelection/OptionSelection';
+import OptionsSelection from './OptionsSelection/OptionSelection';
 import BlankSpace from '../../shared/BlankSpace';
 import LabeledInput from '../../shared/LabeledInput';
 import SendButton from './components/SendButton';
@@ -19,6 +19,13 @@ export default function SendTest() {
         useState({ year: '', semester: '', category: '', subject: '', professor: '', link: '' });
     const [options, setOptions] =
         useState({ years: [], semesters: [], categories: [], subjects: [], professors: [] });
+    const selectionParameters = [
+        { title: 'Selecione o ano:', atribute: 'year', selectionOptions: options.years },
+        { title: 'Selecione o semestre:', atribute: 'semester', selectionOptions: options.semesters },
+        { title: 'Selecione a categoria:', atribute: 'category', selectionOptions: options.categories },
+        { title: 'Selecione a disciplina:', atribute: 'subject', selectionOptions: options.subjects.map(({ name }) => name) },
+        { title: 'Selecione o(a) professor(a):', atribute: 'professor', selectionOptions: options.professors },
+    ];
 
     function adjustTestSingleAtribute(atribute, newValue) {
         const newObject = { ...newTestData };
@@ -40,7 +47,8 @@ export default function SendTest() {
             newTestData.subject &&
             !newTestData.professor
         ) {
-            setProfessors(options, setOptions, setIsLoading);
+            const subjectId = options.subjects.find(({ name }) => name === newTestData.subject).id;
+            setProfessors(options, setOptions, setIsLoading, subjectId);
         }
     }, [newTestData]);
 
@@ -67,43 +75,30 @@ export default function SendTest() {
                 </BoldText>
                 <div>
                     <NewTestContext.Provider value={{ newTestData, adjustTestSingleAtribute }}>
-                        <OptionsSelection
-                            title="Selecione o ano:"
-                            atribute="year"
-                            options={options.years}
-                        />
-                        <OptionsSelection
-                            title="Selecione o semestre:"
-                            atribute="semester"
-                            options={options.semesters}
-                        />
-                        <OptionsSelection
-                            title="Selecione a categoria:"
-                            atribute="category"
-                            options={options.categories}
-                        />
-                        <OptionsSelection
-                            title="Selecione a disciplina:"
-                            atribute="subject"
-                            options={options.subjects}
-                        />
-                        <OptionsSelection
-                            title="Selecione o(a) professor(a):"
-                            atribute="professor"
-                            options={options.professors}
-                        />
+                        {
+                            selectionParameters.map(({ title, atribute, selectionOptions }) => (
+                                <OptionsSelection
+                                    key={`Option Selection ${title}`}
+                                    title={title}
+                                    atribute={atribute}
+                                    options={selectionOptions}
+                                />
+                            ))
+                        }
                     </NewTestContext.Provider>
                 </div>
                 <LabeledInput
                     title="Digite o link da sua prova:"
-                    isShown={!!options.professors.length}
+                    isShown={!!newTestData.professor}
                     value={newTestData.link}
                     onChange={(e) => adjustTestSingleAtribute('link', e.target.value)}
                 />
                 <SendButton
                     text="Enviar"
-                    isShown={!!options.professors.length}
-                    objectToSend={newTestData}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    isShown={!!newTestData.professor}
+                    newTestData={newTestData}
                 />
             </Wrapper>
             <BlankSpace
