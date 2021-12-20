@@ -5,7 +5,7 @@ import NewTestContext from '../../../contexts/NewTestContext';
 
 import GoHomeButton from '../../shared/GoHomeButton';
 import BoldText from '../../shared/BoldText';
-import OptionsSelection from './OptionsSelection/OptionSelection';
+import OptionsSelection from './components/OptionsSelection/OptionSelection';
 import BlankSpace from '../../shared/BlankSpace';
 import LabeledInput from '../../shared/LabeledInput';
 import SendButton from './components/SendButton';

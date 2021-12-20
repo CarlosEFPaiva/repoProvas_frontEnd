@@ -1,25 +1,23 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import NewTestContext from '../../../../../contexts/NewTestContext';
-import BlankSpace from '../../../../shared/BlankSpace';
-import { ArrowDown } from '../../../../../utils/externalLibs/icons';
+import BlankSpace from '../../../../../shared/BlankSpace';
+import { ArrowDown } from '../../../../../../utils/externalLibs/icons';
 import OpenedBox from './OpenedOptionsBox';
 
-export default function OptionsBox({ atribute, options }) {
+export default function OptionsBox({ title, options, setSecondaryFilter }) {
     const [isOpened, setIsOpened] = useState(false);
-    const { newTestData } = useContext(NewTestContext);
 
     return (
         <>
             <Wrapper showBorder={!isOpened} onClick={() => setIsOpened(true)}>
                 <span>
-                    {newTestData[atribute]}
+                    {title}
                     <ArrowDown />
                 </span>
                 <OpenedBox
                     isOpened={isOpened}
-                    atribute={atribute}
+                    setSecondaryFilter={setSecondaryFilter}
                     options={options}
                     setIsOpened={setIsOpened}
                 />

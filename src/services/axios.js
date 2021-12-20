@@ -13,3 +13,19 @@ export function getProfessors(subjectId) {
 export function postNewTest(newTest) {
     return axios.post('/send-test', newTest);
 }
+
+export function getProfessorsOptions() {
+    return axios.get('/view-test/initial-options/professors');
+}
+
+export function getSubjectsOptions() {
+    return axios.get('/view-test/initial-options/subjects');
+}
+
+export function getTestsByProfessorId(professorId) {
+    return axios.get(`/view-test/by-professor/${professorId}`);
+}
+
+export function getTestsBySubjectId(subjectId) {
+    return axios.get(`/view-test/by-subject/${subjectId}`);
+}
