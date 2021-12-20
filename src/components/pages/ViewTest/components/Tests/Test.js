@@ -36,8 +36,10 @@ const Wrapper = styled.div`
 const Title = styled.span`
     font-size: 24px;
     margin-bottom: 40px;
+    text-align: center;
 `;
 
 const ThirdInfo = styled.span`
     font-size: 24px;
+    text-align: center;
 `;
